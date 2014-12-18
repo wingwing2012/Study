@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../public/javascript/angular.js"></script>
+<script src="../public/javascript/main.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../public/stylesheets/styles.css">
+<link rel="stylesheet" type="text/css"
+	href="../public/stylesheets/normalize.css">
+<link rel="stylesheet" type="text/css"
+	href="../public/stylesheets/foundation.min.css">
+</head>
+<body>
+	<div ng-controller="PlayerController">
+		<button ng-click="play()" class="button" ng-show="!playing">Play</button>
+		<button ng-click="stop()" class="button alert" ng-show="playing">Stop</button>
+		Playing audio: <b>{{ playing }}</b>
+	</div>
+	<div ng-controller="MyController">
+		<h5>{{person.name}} {{ clock }}</h5>
+	</div>
+	<div ng-controller="DemoController">
+		<h4>The simplest adding machine ever</h4>
+		<button ng-click="add(1)" class="button">Add</button>
+		<button ng-click="subtract(1)" class="button">Subtract</button>
+		<h4>Current count: {{ counter }}</h4>
+	</div>
+	<div ng-controller="RemotePlayerController">
+		<ul id="programs_list" class="">
+			<li ng-repeat="program in programs"><span npr-link
+				play='play(program)' ng-model="program"></span></li>
+		</ul>
+	</div>
+	<button ng-init="shouldShow = true" ng-click="shouldShow = !shouldShow">Flip
+		the shouldShow variable</button>
+	<div ng-show="shouldShow">
+		<h3>Showing {{ shouldShow }}</h3>
+	</div>
+	<div ng-hide="shouldShow">
+		<h3>Hiding {{ shouldShow }}</h3>
+	</div>
+	<div ng-controller="RepeatController">
+		<ul>
+			<li ng-repeat="person in roommates">{{ person.name | uppercase
+				}}</li>
+		</ul>
+		<ul>
+			<li ng-repeat="(name, color) in people">{{ name }}'s favorite
+				color is {{ color }}</li>
+		</ul>
+	</div>
+	<div ng-controller="ContactController">
+		<form>
+			<label>Name</label> <input type="text" name="name"
+				ng-model="newcontact.name" /> <label>Email</label> <input
+				type="text" name="email" ng-model="newcontact.email" /> <label>Phone</label>
+			<input type="text" name="phone" ng-model="newcontact.phone" /> <br />
+			<input type="hidden" ng-model="newcontact.id" /> <input
+				type="button" value="Save" ng-click="saveContact()" />
+		</form>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="contact in contacts">
+					<td>{{ contact.name }}</td>
+					<td>{{ contact.email }}</td>
+					<td>{{ contact.phone }}</td>
+					<td><a href="#" ng-click="edit(contact.id)">edit</a> | <a
+						href="#" ng-click="delete(contact.id)">delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div ng-controller='MyController'>
+		<div ng-repeat='thing in things'>
+			{{thing}}.
+			<hello> <span>wingwing<span>lingling</span></span></hello>
+		</div>
+	</div>
+	<div ng-controller='SomeController'>
+		<expander class='expander' expander-title='title'> {{text}}
+		</expander>
+	</div>
+</body>
+</html>
